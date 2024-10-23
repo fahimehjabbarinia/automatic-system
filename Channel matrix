@@ -1,0 +1,12 @@
+theta_BW = 5  
+htotal=[]
+for k in range(0,7):
+    theta_0 = np.random.uniform(0,90)
+    #R_theta
+    x=[R(m ,theta_0 , theta_BW ) for m in range(0,128)]
+    row_1=x
+    row_1_arr=np.array(row_1)
+    column_1 =  (row_1_arr).transpose()
+    R_theta = linalg.toeplitz ( row_1_arr, column_1)
+ #zeta ~ CN(0,I_M)
+h= np.dot((sqrtm ( R_theta)) , zeta)
