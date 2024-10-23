@@ -1,0 +1,13 @@
+def R(m , theta_0 , theta_BW):
+    P = 11 # number of scatter around each user
+    theta_BW=5
+    theta_each_path=[]
+    
+    
+    for i in range(-(P-1)//2 , (P+1)//2):
+      
+        theta_each_path.append((1/P)*theta_BW*i)
+        theta_p=np.array(theta_each_path)
+        Rtemp=((1/P)*(np.exp(-cmath.sqrt(-1)*2*np.pi*(1/2)*m*np.sin(theta_0+theta_p))))
+        Rn = sum(Rtemp)
+    return Rn
