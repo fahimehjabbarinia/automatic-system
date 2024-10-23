@@ -1,0 +1,59 @@
+import DeepMIMO
+# Load the default parameters
+parameters = DeepMIMO.default_params()
+
+# Set scenario name
+parameters['scenario'] = 'O1_3p5'
+
+path = 'df'
+
+# Set the main folder containing extracted scenarios
+parameters['dataset_folder'] = path
+
+parameters = DeepMIMO.default_params()
+pprint(parameters) #it will show how the parameters set in
+# To only include 10 strongest paths in the channel computation, set
+parameters['num_paths'] = 10
+# To activate only the first basestation, set
+parameters['active_BS'] = np.array([5])
+# To activate the user rows 1-5, set
+parameters['user_row_first'] = 550
+parameters['user_row_last'] = 3500
+# To activate the half of the users in each selected row randomly, set
+parameters['user_subsampling'] = 0.5
+parameters['ue_antenna']['shape'] = np.array([1, 1, 1]) # Single antenna
+# To load the first five scenes, set
+parameters['dynamic_settings']['first_scene'] = 1
+parameters['dynamic_settings']['last_scene'] = 1
+# To generate basestation to basestation output variables, set
+parameters['enable_BS2BS'] = False
+# For time-domain channels, set
+parameters['activate_OFDM'] = 0
+# Set scenario name
+parameters['scenario'] = 'O1_3p5'
+
+path = 'df'
+
+# Set the main folder containing extracted scenarios
+parameters['dataset_folder'] = path
+# Generate data
+dataset = DeepMIMO.generate_data(parameters)
+#Channel Matrix of Basestation i – User j
+#Float matrix of size (number of RX antennas) x (number of TX antennas) x (number of OFDM subcarriers)
+dataset[0]['user']['channel'][0].shape
+#Ray-tracing Path Parameters
+dataset[0]['user']['paths'][1]
+df = pd.DataFrame()
+
+for i in random.sample(range(0, 265590), 100):
+  
+  
+    l=dataset[0]['user']['paths'][i]
+    df = df.append(l, ignore_index=True)
+    
+    #print(type(df))
+    df.to_csv('total.csv')
+    #print(len(df))
+    
+
+    print(l)
