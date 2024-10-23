@@ -170,3 +170,10 @@ class KMeans:
         imageio.mimsave(os.path.join(path,'animation/animation.gif'), images, duration=0.5)
 
         print("Animation of figures saved in {} directory.".format(os.path.join(path,'animation')))
+
+import pandas as pd
+from KMeans import KMeans
+import outpaths
+
+kmeans2 = KMeans(n_cluster=2, random_state=50)
+kmeans2.fit(cluster_label)
