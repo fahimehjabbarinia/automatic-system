@@ -1,0 +1,11 @@
+def channel_matrix(N, K):
+   d = 0.5
+   AoA=np.random.uniform(-0.5*np.pi,0.5*np.pi,size=(1,K)) 
+   AoA_deg=180.0/np.pi*AoA    
+   phase_shifts_gen=2*np.pi*d*np.sin(AoA)
+   aux=np.reshape(np.arange(0,N),(N,1))
+   phase_shifts=np.dot(aux,phase_shifts_gen) 
+   amplitudes=np.ones((1,K))
+   amplitudes_extd = np.dot(np.ones((N,1)), amplitudes)
+   H=np.multiply(amplitudes_extd, np.exp(-1j*phase_shifts)) #Element by element product.\n",
+   return H
